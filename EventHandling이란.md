@@ -17,34 +17,34 @@ const Button = ({ text, color, children }) => {
       {text} - {color.toUpperCase()}
       {children}
     </button>
-  );
-};
+  )
+}
 
 Button.defaultProps = {
   color: 'white',
-};
+}
 
-export default Button;
+export default Button
 ```
 
 **or**
 
 ```jsx
 const Button = ({ text, color, children }) => {
-  const onClickButton = () => console.log(text);
+  const onClickButton = () => console.log(text)
   return (
     <button style={{ color: color }} onClick={onClickButton}>
       {text} - {color.toUpperCase()}
       {children}
     </button>
-  );
-};
+  )
+}
 
 Button.defaultProps = {
   color: 'white',
-};
+}
 
-export default Button;
+export default Button
 ```
 
 함수를 밖으로 뺀 후 `Onclick()` 함수 안에 함수명을 넣는 것도 가능
@@ -57,40 +57,40 @@ export default Button;
 
 ```jsx
 const Button = ({ text, color, children }) => {
-  const onClickButton = () => console.log(text);
+  const onClickButton = () => console.log(text)
   return (
     <button style={{ color: color }} onClick={onClickButton}>
       {text} - {color.toUpperCase()}
       {children}
     </button>
-  );
-};
+  )
+}
 
 Button.defaultProps = {
   color: 'white',
-};
+}
 
-export default Button;
+export default Button
 ```
 
 ### ❌ 잘못된 예시
 
 ```jsx
 const Button = ({ text, color, children }) => {
-  const onClickButton = () => console.log(text);
+  const onClickButton = () => console.log(text)
   return (
     <button style={{ color: color }} onClick={onClickButton()}>
       {text} - {color.toUpperCase()}
       {children}
     </button>
-  );
-};
+  )
+}
 
 Button.defaultProps = {
   color: 'white',
-};
+}
 
-export default Button;
+export default Button
 ```
 
 ---

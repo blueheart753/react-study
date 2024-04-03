@@ -33,12 +33,12 @@ function App() {
 export default App
 ```
 
-![alt text](image-1.png)
+![alt text](Source/image-1.png)
 
 그림을 보면 state의 초기 값을 0으로 초기화 해주었기에 0으로 잘 있는 것을 볼 수 있다.
 만약 초기 값을 정의하지 않을 경우
 
-![alt text](image-3.png)
+![alt text](Source/image-3.png)
 
 Undefinded로 정의 된다.
 
@@ -98,7 +98,7 @@ function App() {
 export default App
 ```
 
-![alt text](ButtonClickEvent.gif)
+![alt text](Source/ButtonClickEvent.gif)
 
 ```jsx
 import './App.css'
@@ -126,7 +126,7 @@ function App() {
 export default App
 ```
 
-![alt text](ButtonClickEventOnOff.gif)
+![alt text](Source/ButtonClickEventOnOff.gif)
 
 ### 정리하자면...
 
@@ -142,7 +142,7 @@ React에서 State를 리랜더링 하는 것은 컴포넌트안에 있는 함수
 >
 > > 쉽게 설명하면 "Props와 State라는 재료로 컴포넌트라는 **집안의 방**을 꾸미는 것"
 
-![alt text](Frame_2.png)
+![alt text](Source/Frame_2.png)
 
 ## "리렌더링"이란?
 
@@ -150,7 +150,7 @@ React에서 State를 리랜더링 하는 것은 컴포넌트안에 있는 함수
 > >
 > > > 비유하면 집의 인테리어를 **"전부"** 끄집어 내고 다시 재구성하는 것이 아닌 **"바뀌어야 하는 부분"** 만 골라서 재구성한다.
 
-![alt text](Frame_1.png)
+![alt text](Source/Frame_1.png)
 
 ---
 
@@ -183,7 +183,7 @@ function App() {
 export default App
 ```
 
-![alt text](NotState.gif)
+![alt text](Source/NotState.gif)
 
 아무 일도 일어나지 않았다...
 
@@ -192,7 +192,7 @@ export default App
 아주 간단한 사실이다. "리렌더링"이 되지 않았기 때문이다.
 그럼 왜 리렌더링은 안됬을까?그건 **State**때문이다. 리엑트에서 리렌더링은 오직 **State**의 값이 변환 됬을 때만 일어나기 때문이다.
 
-![alt text](Frame_3.png)
+![alt text](Source/Frame_3.png)
 위 사진을 보면 리엑트 컴포넌트는 State의 변화를 감지한다. 만약 State값이 변화가 되면 Re-Rendering을 진행하게 된다.
 
 만약 화면의 있는 값을 가변적으로 변환 시키고 싶을 때는 State의 사용은 필수 적이다.
