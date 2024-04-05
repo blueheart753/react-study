@@ -152,6 +152,174 @@ React에서 State를 리랜더링 하는 것은 컴포넌트안에 있는 함수
 
 ![alt text](/Source/Frame_1.png)
 
+### 리렌더링이 되는 3가지 조건
+
+```jsx
+import './App.css';
+import { useState } from 'react';
+
+const Bulb = ({ light }) => {
+  console.log(light);
+  return (
+    <div>
+      {light === 'On' ? (
+        <h1 style={{ backgroundColor: 'orange' }}>On</h1>
+      ) : (
+        <h1 style={{ backgroundColor: 'gray' }}>Off</h1>
+      )}
+    </div>
+  );
+};
+
+function App() {
+  const [count, setCount] = useState(0);
+  const [light, setLight] = useState('Off');
+  return (
+    <main>
+      <div>
+        <h1>
+          <Bulb light={light} />
+        </h1>
+        <button onClick={() => setLight(light == 'On' ? 'Off' : 'On')}>
+          {light == 'On' ? 'Off' : 'On'}
+        </button>
+      </div>
+      <div>
+        <h1>{count}</h1>
+        <button onClick={() => setCount(count + 1)}>+</button>
+      </div>
+    </main>
+  );
+}
+
+export default App;
+```
+
+![alt text](/Source/Re-Rendering.gif)
+
+분명히 + 버튼을 눌렀는 데 왜 "Bulb"이 리렌더링이 될까?
+
+바로 React가 리렌더링 되는 3가지 조건 때문이다.
+
+#### 3가지 조건은...
+
+1. 자신의 State값이 변경되었을 때
+2. 자신이 제공 받는 Props가 변경되었을 때
+3. 부모 컴포넌트가 리렌더링 됬을 때
+
+이 경우에는 **3**번째에 해당 되는 경우다.
+
+순서는 이렇다.
+
+1. count State가 변경된다.
+2. count State가 있는 App함수가 리렌더링이 된다.
+3. App 함수가 리렌더링이 되기에 Bulb도 같이 리렌더링이 된다.
+
+- 만약 이렇게 되면 React를 사용하는 이유가 사라진다.
+
+#### 그럼 어떻게 해야 할까?
+
+사실 간단히 해결될 문제다.
+
+- **count State**가 있는 컴포넌트와 **Bulb** 컴포넌트를 따로 분리 해주면 된다.
+
+##### ❌ 잘못된 경우 (서로 다른 역할을 하는 컴포넌트가 분리되지 않은 경우)
+
+```jsx
+import './App.css';
+import { useState } from 'react';
+
+const Bulb = ({ light }) => {
+  console.log(light);
+  return (
+    <div>
+      {light === 'On' ? (
+        <h1 style={{ backgroundColor: 'orange' }}>On</h1>
+      ) : (
+        <h1 style={{ backgroundColor: 'gray' }}>Off</h1>
+      )}
+    </div>
+  );
+};
+
+function App() {
+  const [count, setCount] = useState(0);
+  const [light, setLight] = useState('Off');
+  return (
+    <main>
+      <div>
+        <h1>
+          <Bulb light={light} />
+        </h1>
+        <button onClick={() => setLight(light == 'On' ? 'Off' : 'On')}>
+          {light == 'On' ? 'Off' : 'On'}
+        </button>
+      </div>
+      <div>
+        <h1>{count}</h1>
+        <button onClick={() => setCount(count + 1)}>+</button>
+      </div>
+    </main>
+  );
+}
+
+export default App;
+```
+
+![alt text](/Source/Not_Components_separately.gif)
+
+#### ⭕올바른 방식(서로 다른 역할을 하는 컴포넌트가 분리되는 경우)
+
+```jsx
+import './App.css';
+import { useState } from 'react';
+
+const Bulb = ({ light }) => {
+  console.log(light);
+  return (
+    <div>
+      {light === 'On' ? (
+        <h1 style={{ backgroundColor: 'orange' }}>On</h1>
+      ) : (
+        <h1 style={{ backgroundColor: 'gray' }}>Off</h1>
+      )}
+    </div>
+  );
+};
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button onClick={() => setCount(count + 1)}>+</button>
+    </div>
+  );
+};
+
+function App() {
+  const [light, setLight] = useState('Off');
+  return (
+    <main>
+      <div>
+        <h1>
+          <Bulb light={light} />
+        </h1>
+        <button onClick={() => setLight(light == 'On' ? 'Off' : 'On')}>
+          {light == 'On' ? 'Off' : 'On'}
+        </button>
+      </div>
+      <Counter />
+    </main>
+  );
+}
+
+export default App;
+```
+
+![alt text](/Source/Components_separately.gif)
+
 ---
 
 # State는 왜 사용해야 할까?
