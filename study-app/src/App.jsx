@@ -1,13 +1,11 @@
-import './App.css';
-import Counter from './components/Counter';
-import Bulb from './components/Bulb';
+import './App.css'
+import Register from './components/Registaer'
 function App() {
   return (
     <main>
-      <Bulb />
-      <Counter />
+      <Register />
     </main>
-  );
+  )
 }
 
-export default App;
+export default App
