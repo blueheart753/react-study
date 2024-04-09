@@ -1,21 +1,23 @@
-import { useState } from 'react'
-
+import { useState, useRef } from 'react';
 const Register = () => {
   const [input, setInput] = useState({
     name: '',
     birth: '',
     contry: '',
     bio: '',
-  })
+  });
 
-  console.log(input)
+  const refObj = useRef();
+  console.log(refObj);
+
+  console.log(input);
 
   const onChanged = e => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
   return (
     <div>
       <div>
@@ -52,7 +54,7 @@ const Register = () => {
         ></textarea>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
