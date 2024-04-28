@@ -7,19 +7,28 @@ const Register = () => {
     bio: '',
   })
 
-  const refObj = useRef(0)
-  console.log(refObj)
+  const countRef = useRef(0)
+  const inputRef = useRef()
 
   const onChanged = e => {
+    countRef.current++
+    console.log(countRef.current)
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     })
   }
+
+  const onSubmit = () => {
+    if (input.name === '') {
+      inputRef.current.focus()
+    }
+  }
   return (
     <div>
       <div>
         <input
+          ref={inputRef}
           type="text"
           placeholder="이름"
           onChange={onChanged}
@@ -51,6 +60,7 @@ const Register = () => {
           name="bio"
         ></textarea>
       </div>
+      <button onClick={onSubmit}>제출</button>
     </div>
   )
 }
