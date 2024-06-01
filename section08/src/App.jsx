@@ -1,8 +1,8 @@
-import './App.css';
-import { useState } from 'react';
-import Header from './components/Header';
-import Editor from './components/Editor';
-import List from './components/List';
+import './App.css'
+import { useState, useRef } from 'react'
+import Header from './components/Header'
+import Editor from './components/Editor'
+import List from './components/List'
 
 const moukData = [
   {
@@ -23,28 +23,29 @@ const moukData = [
     content: '취업 준비하기',
     date: new Date().getTime(),
   },
-];
+]
 
 function App() {
-  const [todos, setTodos] = useState(moukData);
+  const [todos, setTodos] = useState(moukData)
+  const idRef = useRef(3)
 
   const onCreate = content => {
     const newTodo = {
-      id: 0,
+      id: idRef.current++,
       isDone: false,
       content: content,
       date: new Date().getTime(),
-    };
+    }
 
-    setTodos([newTodo, ...todos]);
-  };
+    setTodos([newTodo, ...todos])
+  }
   return (
     <div className="App">
       <Header />
       <Editor onCreate={onCreate} />
-      <List />
+      <List todos={todos} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
