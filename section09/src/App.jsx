@@ -1,9 +1,8 @@
 import './App.css'
-import { useState, useRef } from 'react'
+import { useRef, useReducer } from 'react'
 import Header from './components/Header'
 import Editor from './components/Editor'
 import List from './components/List'
-import Exam from './components/exam'
 
 const moukData = [
   {
@@ -26,8 +25,10 @@ const moukData = [
   },
 ]
 
+function reducer() {}
+
 function App() {
-  const [todos, setTodos] = useState(moukData)
+  const [todos, dispatch] = useReducer(reducer, moukData)
   const idRef = useRef(3)
 
   const onCreate = content => {
@@ -55,10 +56,9 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Header />
+      <Header />
       <Editor onCreate={onCreate} />
-      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} /> */}
-      <Exam />
+      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
     </div>
   )
 }
