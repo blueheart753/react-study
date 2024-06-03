@@ -28,7 +28,7 @@ const moukData = [
 function reducer(state, action) {
   switch (action.type) {
     case 'CREATE':
-      return [action, ...state];
+      return [action.data, ...state];
     case 'UPDATE':
       return state.map(item =>
         item.id === action.targetId ? { ...item, isDone: !item.isDone } : item,
